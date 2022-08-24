@@ -1,0 +1,19 @@
+#Django
+Django==3.2.13
+django-timezone-field
+django-cors-headers
+django-debug-toolbar
+whitenoise
+Pillow
+psycopg2-binary
+dj-database-url
+python-telegram-bot
+
+# Databases
+psycopg2-binary
+dj-database-url
+
+#python
+pytz
+python-dotenv
+ipython

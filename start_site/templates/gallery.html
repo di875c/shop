@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="">
+{% extends "hf_template.html" %}
+{%load static%}
+{% block content %}
+
+<body  style="background: #535757">
+
+    <div class = "block">
+        <div class="card m-2 me-2 opacity-1">
+          <div class="card-header">
+              <h4> Галерея </h4>
+          </div>
+          <div class="row row-cols-2 row-cols-sm-3 g-3">
+            {% for data in gallery %}
+            <div class="col">
+            <div class="card">
+               <!-- Кнопка-триггер модального окна -->
+                <a  data-bs-toggle="modal" data-bs-target="#galleryModal" data-bs-link='{{data.item_image.url}}'>
+                <img src='{{data.item_image.url}}'  class="card-img-top-fluid w-100" alt="фото не найдено">
+                </a>
+              <div class="card-body d-flex justify-content-center">
+                <a href='../product/{{ data.products.item_link }}' class="text-dark text-decoration-none">
+                    <h6 class="card-title">{{ data.products }}</h6></a>
+                <p class="card-text"><small class="text-muted">{{ data.item_description }}</small></p>
+              </div>
+            </div></div>
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img class="modal-img-fluid w-100" alt="фото не найдено">
+      </div>
+    </div>
+  </div>
+
+<script src="/static/js/gallery_modal.js"></script>
+
+{% endblock %}
+
+</html>

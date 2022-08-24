@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>OOO "АвтоМагазин"</title>
+    <nav class="navbar navbar-expand-xl navbar-light" style="background-color:#bde2e8">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><h1>АвтоМагазин</h1></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark" aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse show" id="navbarDark">
+          <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Главная</a></li>
+            <div class="dropdown">
+            <button class="btn dropdown nav-link active" type="button" id="dropdownMenuDark" data-bs-toggle="dropdown" aria-expanded="false">
+            Каталог продукции
+            </button>
+            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuLight" style="background-color:#accbea">
+                {% for data in catalogs %}
+                    <li><a class="dropdown-item" href="/catalog/{{ data.catalog_link }}">{{ data.catalog_name }}</a></li>
+                {% endfor%}
+            </ul>
+            </div>
+            <li class="nav-item"><a class="nav-link active"  href="/gallery">Галерея</a></li>
+            <li class="nav-item"><a class="nav-link active"  href="/contacts">Контакты</a></li>
+            <li class="nav-item"><a class="nav-link active"  href="/bracket">Корзина</a></li>
+          </ul>
+            <ul class="navbar-nav d-flex">
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <li class="nav-item"><a class="nav-link active"  href="/admin">Менеджер</a></li>
+                {% endif %}
+                <li class="nav-item"><a class="nav-link active"  href="/accounts/update">{{ user.first_name }} </a></li>
+                <li class="nav-item"><a class="nav-link active"  href="{% url 'logout' %}">Выйти</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link active"  href="/accounts/login"> Войти на сайт</a></li>
+                <li class="nav-item"><a class="nav-link active"  href="/accounts/signup" > Зарегистрироваться </a></li>
+            {% endif %}
+            </ul>
+            <form class="d-flex" method="get" action="{% url 'search_result' %}">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+                <button class="btn btn-outline-dark" type="submit">Search</button>
+            </form>
+        </div>
+      </div>
+    </nav>
+</head>
+<div style="margin-bottom:125px">
+{% block content %}
+{% endblock %}
+</div>
+<div class="footer fixed-bottom">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3  border-top" style="background-color:#000000">
+    <div class="col d-flex align-items-center">
+      <span class="text-muted ms-3">&copy; 2022 OOO "АвтоМагазин"</span>
+    </div>
+        <div class="row row-cols-3 row-cols-sm-3 text-light">
+            <div class="col-sm-auto col-auto">
+                <a class="text-muted" href="https://wa.me/7268291201"><img src= {% static "/img/whatsapp.png" %} width=46px height=36px /></a>
+            </div>
+            <div class="col-sm-auto col-auto">
+                <a class="text-muted" href="https://t.me/+7268291201"><img src= {% static "/img/telegramm.png" %} width=50px height=36px /></a>
+            </div>
+            <div class="col-sm-auto col-auto m-1">
+                <a href="viber://chat?number=%2B7268291201"><img src= {% static "/img/viber.png" %} width=40px height=36px /></a>
+            </div>
+            </div>
+    </footer>
+</div>
+
+
+</html>

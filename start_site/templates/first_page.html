@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hf_template.html" %}
+{%load static%}
+{% block content %}
+
+<body style="background: #535757">
+    <div class = "block">
+        <div class="card m-2 me-2 opacity-1">
+          <div class="card-header">
+              <h4>О нас</h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Компания «АвтоМагазин» – это компания продающая лучшие автомобили мира.
+              <p>Мы продаем:</p>
+              <p>- в единичном и оптовом количестве;</p>
+              <p>- поставляем автомобили в кратчайщие сроки;</p>
+              <p>- предлагаем лучшие цены, по сравнению с нашими конкурентами</p>
+              <p>- обеспечиваем гарантийное и постгарантийное обслуживание.
+            </p></p>
+
+          </div>
+    </div>
+
+    <div class = "block">
+        <div class="card m-2 me-2 opacity-1">
+        <div class="card-header">
+            <h4>Каталог продукции</h4>
+          </div>
+       <div class="row row-cols-1 row-cols-sm-3 g-3">
+        {% for data in catalogs %}
+        <div class="col"><a href="catalog/{{ data.catalog_link }}">
+        <div class="card bg-dark text-light">
+          <img src='{{data.catalog_image.url}}'  class="card-img opacity-75" alt="card-img-overlay">
+          <div class="card-img-overlay">
+            <h5 class="card-title">{{ data.catalog_name }}</h5>
+            <p class="card-text">{{data.catalog_description}}</p>
+          </div>
+        </div></a></div>
+        {% endfor %}
+        </div></div></div>
+
+<!--
+    <div id="carouselWithCaptions" class="carousel slide" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+          {% for data in catalogs %}
+          {% if forloop.counter == 1 %}
+        <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="{{ forloop.counter0 }}" class="active"></li>
+          {% else %}
+        <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="{{ forloop.counter0 }}"></li>
+          {% endif %}
+          {% endfor %}
+      </ol>
+
+        <div class="carousel-inner">
+        {% for data in catalogs %}
+          {% if forloop.counter == 1 %}
+          <div class="carousel-item active">
+            <div class="card bg-dark text-light align-middle">
+              <img src='{%static data.catalog_image %}'  class="card-img" alt="card-img-overlay">
+              <div class="card-img-overlay align-center">
+                <h5 class="card-title">{{ data.name }}</h5>
+                <p class="card-text">{{data.description}}</p>
+                <p class="card-text">button</p>
+              </div>
+            </div>
+        </div>
+          {% else %}
+        <div class="carousel-item">
+           <div class="card">
+              <div class="row g-0">
+                <div class="col-5 col-sm-4">
+                  <img src='{%static data.picture %}' class="img-fluid w-100" alt="Картинка не найдена">
+                </div>
+                <div class="col-7 col-sm-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.name }}</h5>
+                        <p class="card-text"> {{ data.description }}</p>
+                        <p class="card-text"><small class="text-muted">Что-нибудь в футер если надо</small></p>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+        </div>
+          {% endif %}
+        {% endfor %}
+      <a class="carousel-control-prev" href="#carouselWithCaptions" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselWithCaptions" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+-->
+</body>
+{% endblock %}
+
+
+
+</html>

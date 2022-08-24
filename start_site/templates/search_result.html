@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hf_template.html" %}
+{%load static%}
+{% block content %}
+
+<body style="background-image: url('{%static "/img/blackcar.jpg" %}')">
+<div class = 'm-2 text-light'>
+  <h3> Результат поиска:</h3>
+  <ul>
+    {% for product in object_list %}
+      <li>
+        <a class="text-decoration-none" href="../product/{{ product.item_link }}">
+          {{ product.item_name }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+</body>
+{% endblock %}
+
+</html>

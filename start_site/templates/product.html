@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hf_template.html" %}
+{%load static%}
+{% block content %}
+
+<body style="background: #535757">
+
+    <div class = "block">
+        <div class="card m-2 me-2 opacity-1">
+          <div class="card-header">
+             <h4>{{ product.item_name }}</h4>
+          </div>
+            <div class="d-flex justify-content-center">
+                    <a  data-bs-toggle="modal" data-bs-target="#galleryModal" data-bs-link='{{product.item_image.url}}'>
+                        <img src='{{main_image.item_image.url}}'  class="img-fluid" alt="Здесь будет соответсвующая картинка" width=600px height=600px>
+                    </a>
+                </div>
+            <div class="card">
+              <form class="d-flex" method="post">
+                <div class="col col-sm-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Описание</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Характеристики</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link disabled" id="disabled-tab" data-bs-toggle="tab" href="#disabled" role="tab" aria-controls="disabled" tabindex="-1" aria-disabled="true">Секретная информация</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                          <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                            <p class="card-text">{{ product.item_description }}</p>
+                              <p class="card-text">Цена: {{ product.item_cost }} руб.</p></div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <p>Габариты - </p>
+                                <p>Мощность двигателя - </p>
+                                <p>Оценка Экспертов - </p>
+                            </div>
+                          <div class="tab-pane fade" id="disabled" role="tabpanel" aria-labelledby="disabled-tab">Секретная информация</div>
+                        </div>
+                      </div>
+                    </div>
+
+                      <div class="card-footer text-muted d-flex justify-content-center">
+                          <button class="btn btn-outline-dark m-2" type="submit" name="add_to_bracket">Добавить в корзину</button>
+                          <button class="btn btn-outline-dark m-2" type="submit" name="one_click">Купить в один клик </button>
+                      </div>
+                </div>
+
+              </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-body">
+              <div id="carouselWithCaptions" class="carousel slide" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+          {% for data in product.gallery.all %}
+          {% if forloop.counter == 1 %}
+        <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="{{ forloop.counter0 }}" class="active"></li>
+          {% else %}
+        <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="{{ forloop.counter0 }}"></li>
+          {% endif %}
+          {% endfor %}
+      </ol>
+
+        <div class="carousel-inner">
+        {% for data in product.gallery.all %}
+          {% if forloop.counter == 1 %}
+          <div class="carousel-item active">
+            <div class="card bg-dark text-light align-middle">
+              <img src='{{data.item_image.url}}'  class="card-img" alt="card-img-overlay">
+            </div>
+        </div>
+          {% else %}
+        <div class="carousel-item">
+           <div class="card">
+               <div class="card bg-dark text-light align-middle">
+                <img src='{{data.item_image.url}}'  class="card-img" alt="card-img-overlay">
+                </div>
+           </div>
+        </div>
+          {% endif %}
+        {% endfor %}
+      <a class="carousel-control-prev" href="#carouselWithCaptions" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselWithCaptions" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+      </div>
+    </div>
+  </div>
+
+<script src="/static/js/gallery_modal.js"></script>
+
+
+</body>
+{% endblock %}
+
+</html>

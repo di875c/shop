@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hf_template.html" %}
+{%load static%}
+{% block content %}
+
+<body style="background-image: url('{%static "/img/blackcar.jpg" %}')">
+    <div class = "block">
+        <div class="card bg-dark p-2 text-light bg-opacity-10">
+          <div class="card-header">
+             <h3> Наши Контакты</h3>
+          </div>
+            <div class="card-header">
+              <h6> Телефон</h6>
+            </div>
+            <div class="row row-cols-2 row-cols-sm-2 text-light">
+                  <div class="col-sm-auto col-auto m-1">
+                      <svg class="bi" width="36" height="36"><img src= {% static "/img/call.png" %} width=36px height=36px /></svg>
+                  </div>
+                  <div class="col-auto m-1">
+                        <a>+7 (999) 111 11 11</a>
+                  </div>
+            </div>
+            <div class="card-header">
+              <h6> Электронная почта</h6>
+            </div>
+            <div class="row row-cols-2 row-cols-sm-2 text-light">
+                  <div class="col-sm-auto col-auto m-1">
+                    <a><svg class="bi" width="36" height="36"><img src= {% static "/img/mail.png" %} width=36px height=36px /></svg></a>
+                  </div>
+                  <div class="col-auto m-1">
+                    <p>почта@автомагазин.ре</p>
+                  </div>
+            </div>
+            <div class="card-header">
+              <h6> Адресс</h6>
+            </div>
+            <div class="row row-cols-2 row-cols-sm-2 text-light">
+                  <div class="col-sm-auto col-auto m-1">
+                      <a><svg class="bi" width="36" height="36"><img src= {% static "/img/adress.png" %} width=36px height=36px /></svg></a>
+                  </div>
+                  <div class="col-auto m-1">
+                        <p>г. Москва, улица Автомобильная, дом 1</p>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+<div class = "block">
+        <div class="card bg-dark p-2 text-light bg-opacity-10">
+          <div class="card-header">
+             <h3> Написать в мессенджер</h3>
+          </div>
+            <div class="row row-cols-3 row-cols-sm-3 text-light">
+            <div class="col-sm-auto col-auto m-1">
+                <a class="text-muted" href="https://wa.me/79999999999"><img src= {% static "/img/whatsapp.png" %} width=46px height=36px /></a>
+            </div>
+            <div class="col-sm-auto col-auto m-1">
+                <a class="text-muted" href="https://t.me/+79999999999"><img src= {% static "/img/telegramm.png" %} width=50px height=36px /></a>
+            </div>
+            <div class="col-sm-auto col-auto m-1">
+                <a href="viber://chat?number=%2B79999999999"><img src= {% static "/img/viber.png" %} width=40px height=36px /></a>
+            </div>
+            </div>
+        </div>
+</div>
+</body>
+{% endblock %}
+
+</html>

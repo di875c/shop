@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "hf_template.html" %}
+{%load static%}
+{% block content %}
+<body style="background-image: url('{%static "/img/blackcar.jpg" %}')">
+<div class="ms-4 mt-4 text-light">
+<h2>Данные пользователя {{ user.username }}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-light">Update</button>
+</form>
+</div>
+</body>
+{% endblock %}
+</html>

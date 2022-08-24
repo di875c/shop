@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hf_template.html" %}
+{%load static%}
+{% block content %}
+
+<body  style="background: #535757">
+
+    <div class = "block">
+        <div class="card m-2 me-2 opacity-1">
+        <div class="card-header">
+            <h4>{{catalog_name}}</h4>
+          </div>
+       <div class="row row-cols-1 row-cols-sm-4 g-4 ">
+        {% for data in products %}
+        <div class="col"><a href='../product/{{ data.product.item_link }}' class="text-decoration-none">
+        <div class="card text-dark">
+            <div class="card-body">
+                <h5 class="card-title">{{ data.product.item_name }}</h5>
+            </div>
+            <img src='{{data.main_image.item_image.url}}'  class="card-img" alt="Здесь будет соответсвующая картинка" />
+        </div></a></div>
+        {% endfor %}
+        </div></div></div>
+
+
+</body>
+{% endblock %}
+
+</html>
